@@ -1,4 +1,5 @@
 <?php
+// FILE: routes/web.php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -17,20 +18,20 @@ Route::get('/register', [AuthController::class, 'showRegister'])->name('register
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Prenotazioni (solo utenti loggati)
-Route::middleware('auth')->group(function () {
+// Prenotazioni (solo utenti loggati) - MIDDLEWARE QUI
+Route::middleware(['auth'])->group(function () {
     Route::get('/booking/create', [BookingController::class, 'create'])->name('booking.create');
     Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
     Route::post('/booking/{id}/cancel', [BookingController::class, 'cancel'])->name('booking.cancel');
 });
 
-// Profilo utente
-Route::middleware('auth')->group(function () {
+// Profilo utente - MIDDLEWARE QUI
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
-// Admin
+// Admin - MIDDLEWARE QUI
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 

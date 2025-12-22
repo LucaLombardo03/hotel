@@ -157,7 +157,7 @@ class HotelSeeder extends Seeder
         echo "--------------------\n";
         echo "👤 ADMIN:\n";
         echo "   Email: admin@hotel.com\n";
-        echo "   Password: hotel123\n";
+        echo "   Password: password123\n";
         echo "\n";
         echo "👤 UTENTI:\n";
         echo "   Email: mario@email.com\n";

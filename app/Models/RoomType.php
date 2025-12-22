@@ -21,16 +21,19 @@ class RoomType extends Model
         'price_per_night' => 'decimal:2',
     ];
 
+    // RELAZIONE CON HOTEL
     public function hotel()
     {
         return $this->belongsTo(Hotel::class);
     }
 
+    // RELAZIONE CON PRENOTAZIONI
     public function bookings()
     {
         return $this->hasMany(Booking::class);
     }
 
+    // METODO PER CALCOLARE CAMERE DISPONIBILI
     public function availableRooms($checkIn, $checkOut)
     {
         $bookedRooms = Booking::where('room_type_id', $this->id)

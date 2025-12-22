@@ -25,16 +25,19 @@ class Booking extends Model
         'total_price' => 'decimal:2',
     ];
 
+    // RELAZIONE CON UTENTE
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    // RELAZIONE CON TIPOLOGIA CAMERA
     public function roomType()
     {
         return $this->belongsTo(RoomType::class);
     }
 
+    // METODO PER CALCOLARE IL NUMERO DI NOTTI
     public function getNights()
     {
         return $this->check_in->diffInDays($this->check_out);

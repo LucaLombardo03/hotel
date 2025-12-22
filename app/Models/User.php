@@ -28,11 +28,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    // METODO PER VERIFICARE SE È ADMIN
     public function isAdmin()
     {
         return $this->role === 'admin';
     }
 
+    // RELAZIONE CON PRENOTAZIONI
     public function bookings()
     {
         return $this->hasMany(Booking::class);

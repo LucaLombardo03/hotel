@@ -10,11 +10,6 @@ use Carbon\Carbon;
 
 class BookingController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function create(Request $request)
     {
         $roomType = RoomType::findOrFail($request->room_type_id);

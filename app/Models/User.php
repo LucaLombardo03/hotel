@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'name',
@@ -15,7 +16,7 @@ class User extends Authenticatable
         'password',
         'role',
         'phone',
-        'address'
+        'address',
     ];
 
     protected $hidden = [
@@ -23,18 +24,20 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
 
-    // METODO PER VERIFICARE SE È ADMIN
-    public function isAdmin()
+    // QUESTO METODO DEVE ESSERE PRESENTE
+    public function isAdmin(): bool
     {
         return $this->role === 'admin';
     }
 
-    // RELAZIONE CON PRENOTAZIONI
     public function bookings()
     {
         return $this->hasMany(Booking::class);

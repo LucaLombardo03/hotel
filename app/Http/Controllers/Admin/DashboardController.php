@@ -8,11 +8,18 @@ use App\Models\Booking;
 
 class DashboardController extends Controller
 {
+    /**
+     * Mostra la dashboard dell'amministratore con hotel e prenotazioni attive.
+     */
     public function index()
     {
-        // Recupera i dati necessari per popolare la dashboard unica
         $hotel = Hotel::with(['roomTypes', 'images'])->first();
-        $bookings = Booking::with(['user', 'roomType'])->latest()->paginate(20);
+        
+        // Filtriamo per escludere le prenotazioni cancellate dalla lista admin
+        $bookings = Booking::with(['user', 'roomType'])
+            ->where('status', '!=', 'cancelled')
+            ->latest()
+            ->paginate(20);
 
         return view('admin.dashboard', compact('hotel', 'bookings'));
     }

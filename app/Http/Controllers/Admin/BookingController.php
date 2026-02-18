@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin; // <--- Qui c'era l'errore, mancava \Admin
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
@@ -8,15 +8,34 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+    /**
+     * Mostra la lista delle prenotazioni all'amministratore.
+     * Esclude quelle cancellate (Opzione B).
+     */
+    public function index()
+    {
+        $bookings = Booking::with(['user', 'roomType'])
+            ->where('status', '!=', 'cancelled')
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.bookings.index', compact('bookings'));
+    }
+
+    /**
+     * Aggiorna lo stato della prenotazione (Confermata, Pagata, ecc.)
+     */
     public function updateStatus(Request $request, $id)
     {
-        $validated = $request->validate([
-            'status' => 'required|in:pending,confirmed,cancelled',
+        $booking = Booking::findOrFail($id);
+        
+        $request->validate([
+            'status' => 'required|in:pending,confirmed,checked_in,checked_out,cancelled'
         ]);
 
-        $booking = Booking::findOrFail($id);
-        $booking->update(['status' => $validated['status']]);
+        $booking->status = $request->status;
+        $booking->save();
 
-        return back()->with('success', 'Stato prenotazione aggiornato!');
+        return back()->with('success', 'Stato prenotazione aggiornato con successo.');
     }
 }

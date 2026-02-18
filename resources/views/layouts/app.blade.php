@@ -191,7 +191,7 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p class="mb-0">&copy; 2025 Hotel Booking System. Tutti i diritti riservati.</p>
+            <p class="mb-0">&copy; 2026 Hotel Booking System. Tutti i diritti riservati.</p>
             <p class="mb-0"><small>Sviluppato con Laravel & Bootstrap</small></p>
         </div>
     </footer>

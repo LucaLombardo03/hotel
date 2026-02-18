@@ -8,14 +8,28 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
+    /**
+     * Mostra il profilo dell'utente e la lista delle prenotazioni attive.
+     * Le prenotazioni con stato 'cancelled' vengono ignorate.
+     */
     public function index()
     {
+        /** @var \App\Models\User $user */
         $user = Auth::user();
-        $bookings = $user->bookings()->with('roomType')->latest()->get();
+
+        // MODIFICA: Aggiunto filtro per nascondere le prenotazioni cancellate dalla vista
+        $bookings = $user->bookings()
+            ->where('status', '!=', 'cancelled')
+            ->with('roomType')
+            ->latest()
+            ->get();
 
         return view('profile.index', compact('user', 'bookings'));
     }
 
+    /**
+     * Aggiorna i dati anagrafici e la password dell'utente.
+     */
     public function update(Request $request)
     {
         $user = Auth::user();

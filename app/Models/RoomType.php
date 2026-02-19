@@ -16,7 +16,7 @@ class RoomType extends Model
         'amenities'
     ];
 
-    protected $casts = [
+    protected $casts = [    
         'amenities' => 'array',
         'price_per_night' => 'decimal:2',
     ];

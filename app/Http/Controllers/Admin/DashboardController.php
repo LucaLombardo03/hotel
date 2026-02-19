@@ -8,9 +8,7 @@ use App\Models\Booking;
 
 class DashboardController extends Controller
 {
-    /**
-     * Mostra la dashboard dell'amministratore con hotel e prenotazioni attive.
-     */
+    
     public function index()
     {
         $hotel = Hotel::with(['roomTypes', 'images'])->first();

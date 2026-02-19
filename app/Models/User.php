@@ -32,7 +32,6 @@ class User extends Authenticatable
         ];
     }
 
-    // QUESTO METODO DEVE ESSERE PRESENTE
     public function isAdmin(): bool
     {
         return $this->role === 'admin';

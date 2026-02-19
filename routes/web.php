@@ -3,10 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\BookingController; // Controller Pubblico
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
 
-// Importiamo i nuovi controller Admin separati
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HotelController;
 use App\Http\Controllers\Admin\RoomTypeController;
@@ -35,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
-// AREA AMMINISTRATORE (Refactoring applicato)
+// AREA AMMINISTRATORE
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
 
     // Dashboard Principale

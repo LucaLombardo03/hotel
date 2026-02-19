@@ -117,7 +117,7 @@ class HotelSeeder extends Seeder
             'check_out' => now()->addDays(8),
             'num_guests' => 2,
             'num_rooms' => 1,
-            'total_price' => 285.00, // 3 notti x 95€
+            'total_price' => 285.00,
             'status' => 'confirmed',
             'notes' => 'Arrivo previsto in serata',
         ]);
@@ -129,7 +129,7 @@ class HotelSeeder extends Seeder
             'check_out' => now()->addDays(12),
             'num_guests' => 2,
             'num_rooms' => 1,
-            'total_price' => 440.00, // 2 notti x 220€
+            'total_price' => 440.00,
             'status' => 'pending',
             'notes' => 'Viaggio di nozze - richiesta champagne in camera',
         ]);
@@ -141,7 +141,7 @@ class HotelSeeder extends Seeder
             'check_out' => now()->addDays(20),
             'num_guests' => 4,
             'num_rooms' => 1,
-            'total_price' => 700.00, // 5 notti x 140€
+            'total_price' => 700.00,
             'status' => 'pending',
             'notes' => 'Vacanza con bambini di 6 e 9 anni',
         ]);

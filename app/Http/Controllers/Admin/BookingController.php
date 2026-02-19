@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin; // <--- Qui c'era l'errore, mancava \Admin
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    /**
-     * Mostra la lista delle prenotazioni all'amministratore.
-     * Esclude quelle cancellate (Opzione B).
-     */
     public function index()
     {
         $bookings = Booking::with(['user', 'roomType'])

@@ -81,7 +81,7 @@ class AdminController extends Controller
         return back()->with('success', 'Immagine eliminata!');
     }
 
-    // GESTIONE ROOM TYPES
+    // GESTIONE TIPI STANZA
     public function storeRoomType(Request $request)
     {
         $validated = $request->validate([

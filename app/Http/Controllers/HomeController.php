@@ -12,7 +12,6 @@ class HomeController extends Controller
     {
         $hotel = Hotel::with(['images'])->first();
 
-        // Rimuoviamo .with('images') perché RoomType non ha questa relazione nel modello
         $query = RoomType::query();
 
         if ($request->filled('guests')) {

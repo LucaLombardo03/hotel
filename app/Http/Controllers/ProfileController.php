@@ -8,10 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    /**
-     * Mostra il profilo dell'utente e la lista delle prenotazioni attive.
-     * Le prenotazioni con stato 'cancelled' vengono ignorate.
-     */
     public function index()
     {
         /** @var \App\Models\User $user */
